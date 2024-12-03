@@ -1,0 +1,9 @@
+Stages of a Feature
+
+Unpicked
+In design
+In development
+In testing
+In audit
+Under Deployment/ on Build
+Completed/ in Production
