@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import "./App.css";
 
@@ -38,7 +37,7 @@ function App() {
 
   return (
     <div className="Board flex gap-4 min-w-full w-full min-h-full h-full ">
-      {board.map(({ id, stage, setStage }, index) => (
+      {board.map(({ id, stage, setStage, heading }, index) => (
         <Stage
           key={`stage-${index}`}
           id={id}
@@ -59,6 +58,7 @@ function App() {
             ]);
           }}
           moveTask={moveTask}
+          heading={heading}
         >
           {stage.map(({ value, id, parentId, history }) => (
             <Item
@@ -77,7 +77,7 @@ function App() {
 
 export default App;
 
-const Stage = ({ id, addTask, moveTask, children }) => {
+const Stage = ({ id, addTask, moveTask, heading, children }) => {
   const onDropFn = (e) => {
     e.preventDefault();
     const item = JSON.parse(e.dataTransfer.getData("draggedItem"));
@@ -92,6 +92,7 @@ const Stage = ({ id, addTask, moveTask, children }) => {
       onDragOver={(e) => e.preventDefault()}
       className="Stage border rounded flex flex-col gap-4 text-lg font-semibold flex-1 overflow-auto items-center p-4"
     >
+      <h2 className="text-2xl font-bold">{heading}</h2>
       <FormInput handleSubmit={addTask} />
       <div className="flex flex-col gap-2 overflow-auto flex-1 w-full">
         {children}
